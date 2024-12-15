@@ -13,3 +13,5 @@ robustness-metrics @ git+https://github.com/google-research/robustness_metrics.g
 edward2 @ git+https://github.com/google/edward2.git@5437837ae94b5a7152d9c25bc4175e3ef732e513
 uncertainty-baselines @ git+https://github.com/google/uncertainty-baselines.git@c53945244566e3e47c8ad2e285925d52f880f3ae
 typing-extensions==3.7.4.3
+torch==1.12.1
+torchvision==0.13.1

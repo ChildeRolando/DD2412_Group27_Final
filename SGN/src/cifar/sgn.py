@@ -196,8 +196,8 @@ def main(argv):
   logging.get_absl_handler().setFormatter(formatter)
   del argv  # unused arg
 
-  tf.io.gfile.makedirs(FLAGS.output_dir)
-  logging.info('Saving checkpoints at %s', FLAGS.output_dir)
+  #tf.io.gfile.makedirs(FLAGS.output_dir)
+  #logging.info('Saving checkpoints at %s', FLAGS.output_dir)
   tf.random.set_seed(FLAGS.seed)
 
   data_dir = FLAGS.data_dir
@@ -424,14 +424,14 @@ def main(argv):
     checkpoint = tf.train.Checkpoint(model=model, optimizer=optimizer)
     checkpoint_delta = tf.train.Checkpoint(model=model_delta, optimizer=optimizer)
 
-    latest_checkpoint = tf.train.latest_checkpoint(FLAGS.output_dir)
+    """ latest_checkpoint = tf.train.latest_checkpoint(FLAGS.output_dir) """
     initial_epoch = 0
-    if latest_checkpoint:
+    """ if latest_checkpoint:
       # checkpoint.restore must be within a strategy.scope() so that optimizer
       # slot variables are mirrored.
       checkpoint.restore(latest_checkpoint)
       logging.info('Loaded checkpoint %s', latest_checkpoint)
-      initial_epoch = optimizer.iterations.numpy() // steps_per_epoch
+      initial_epoch = optimizer.iterations.numpy() // steps_per_epoch """
 
     total_steps = steps_per_epoch * FLAGS.train_epochs
 
@@ -704,9 +704,9 @@ def main(argv):
           os.path.join(FLAGS.output_dir, 'checkpoint'))
       logging.info('Saved checkpoint to %s', checkpoint_name)
 
-  final_checkpoint_name = checkpoint.save(
+  """ final_checkpoint_name = checkpoint.save(
       os.path.join(FLAGS.output_dir, 'checkpoint'))
-  logging.info('Saved last checkpoint to %s', final_checkpoint_name)
+  logging.info('Saved last checkpoint to %s', final_checkpoint_name) """
 
 if __name__ == '__main__':
   app.run(main)
