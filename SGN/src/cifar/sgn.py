@@ -341,7 +341,7 @@ def main(argv):
     logging.info('Model output shape: %s', model.output_shape)
     logging.info('Model number of weights: %s', model.count_params())
     # Linearly scale learning rate and the decay epochs by vanilla settings.
-    base_lr = FLAGS.base_learning_rate * (batch_size / 128) ** 0.5
+    base_lr = FLAGS.base_learning_rate * (batch_size / 128)
     optimizer = tf.keras.optimizers.SGD(base_lr,
                                         momentum=1.0 - FLAGS.one_minus_momentum,
                                         nesterov=True)
